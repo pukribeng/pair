@@ -1,47 +1,36 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/nunomaduro/skeleton-php/master/docs/example.png" height="300" alt="Skeleton Php">
+    <img src="https://raw.githubusercontent.com/nunomaduro/pair/main/docs/example.png" height="300" alt="Skeleton Php">
     <p align="center">
-        <a href="https://github.com/nunomaduro/skeleton-php/actions"><img alt="GitHub Workflow Status (master)" src="https://github.com/nunomaduro/skeleton-php/actions/workflows/tests.yml/badge.svg"></a>
-        <a href="https://packagist.org/packages/nunomaduro/skeleton-php"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/nunomaduro/skeleton-php"></a>
-        <a href="https://packagist.org/packages/nunomaduro/skeleton-php"><img alt="Latest Version" src="https://img.shields.io/packagist/v/nunomaduro/skeleton-php"></a>
-        <a href="https://packagist.org/packages/nunomaduro/skeleton-php"><img alt="License" src="https://img.shields.io/packagist/l/nunomaduro/skeleton-php"></a>
+        <a href="https://github.com/nunomaduro/pair/actions"><img alt="GitHub Workflow Status (main)" src="https://github.com/nunomaduro/pair/actions/workflows/tests.yml/badge.svg"></a>
+        <a href="https://packagist.org/packages/nunomaduro/pair"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/nunomaduro/pair"></a>
+        <a href="https://packagist.org/packages/nunomaduro/pair"><img alt="Latest Version" src="https://img.shields.io/packagist/v/nunomaduro/pair"></a>
+        <a href="https://packagist.org/packages/nunomaduro/pair"><img alt="License" src="https://img.shields.io/packagist/l/nunomaduro/pair"></a>
     </p>
 </p>
 
 ------
-This package provides a wonderful **PHP Skeleton** to start building your next package idea.
+Pair stands for **Protocol for AI Rules**, and it aims to provide a standardized way to define and manage rules for AI editor/agents, ensuring you only maintain one set of AI rules under `.ai` folder, which can be used by multiple AI editors/agents.
 
 > **Requires [PHP 8.3+](https://php.net/releases/)**
 
-⚡️ Create your package using [Composer](https://getcomposer.org):
+## Installation
+
+You may install Pair using [Composer](https://getcomposer.org):
 
 ```bash
-composer create-project nunomaduro/skeleton-php --prefer-source PackageName
+composer require nunomaduro/pair --dev
 ```
 
-🧹 Keep a modern codebase with **Pint**:
+## Usage
+
+You may run Pair using the `pair` command. Initially, this command will create a `.ai` directory in your project root, which will contain the configuration files for your AI rules.
+
 ```bash
-composer lint
+./vendor/bin/pair
 ```
 
-✅ Run refactors using **Rector**
-```bash
-composer refactor
-```
+Also, on the first run, Pair will add `.cursor`, `.junie`, etc, files to your project `.gitignore` file, if it exists, to prevent these files from being committed to your version control system.
 
-⚗️ Run static analysis using **PHPStan**:
-```bash
-composer test:types
-```
+On subsequent runs, Pair will check for updates to the `.ai` directory and update the configuration files of the other editors or agents accordingly.
 
-✅ Run unit tests using **PEST**
-```bash
-composer test:unit
-```
-
-🚀 Run the entire test suite:
-```bash
-composer test
-```
-
-**Skeleton PHP** was created by **[Nuno Maduro](https://x.com/enunomaduro)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
+**Pair** was created by **[Nuno Maduro](https://x.com/enunomaduro)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
