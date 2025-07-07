@@ -10,7 +10,9 @@
         }
     ],
     "require": {
-        "php": "^8.3.0"
+        "php": "^8.3.0",
+        "nunomaduro/termwind": "^2.3",
+        "symfony/console": "^7.3"
     },
     "require-dev": {
         "laravel/pint": "^1.23.0",
@@ -23,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NunoMaduro\\Pair\\": "src/"
+            "Pair\\": "src/"
         }
     },
     "autoload-dev": {
@@ -57,5 +59,8 @@
             "@test:types",
             "@test:refactor"
         ]
-    }
+    },
+    "bin": [
+        "bin/pair"
+    ]
 }

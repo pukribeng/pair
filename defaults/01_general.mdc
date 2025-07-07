@@ -1,0 +1,7 @@
+---
+description: General guidelines for writing code in our codebase.
+globs: 
+alwaysApply: true
+---
+
+- One general rule here.
