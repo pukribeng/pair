@@ -4,7 +4,7 @@ use Symfony\Component\Process\Process;
 
 it('creates the `.ai` folder', function () {
     $process = Process::fromShellCommandline(
-        './bin/pair install --path tests/Playground',
+        'php ./bin/pair install --path tests/Playground',
     );
 
     $exitCode = $process->run();
