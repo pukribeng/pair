@@ -28,6 +28,7 @@ final class InstallCommand extends Command
     {
         renderUsing($output);
 
+        /** @var string $path */
         $path = $input->getOption('path') ?: Project::fromEnv()->path();
 
         if (! is_string($path)) {
@@ -72,7 +73,7 @@ final class InstallCommand extends Command
         }
 
         if (file_exists($aiFolder)) {
-            $files = glob($aiFolder.'/*');
+            $files = glob($aiFolder.'/*') ?: [];
 
             if ($files !== false) {
                 foreach ($files as $file) {
@@ -87,13 +88,7 @@ final class InstallCommand extends Command
 
         $defaultFolder = dirname(__DIR__, 3).'/defaults';
 
-        $files = glob($defaultFolder.'/*');
-
-        if ($files === false) {
-            return;
-        }
-
-        foreach ($files as $file) {
+        foreach (glob($defaultFolder.'/*') ?: [] as $file) {
             if (is_file($file)) {
                 copy($file, $aiFolder.'/'.basename($file));
             }
@@ -111,9 +106,7 @@ final class InstallCommand extends Command
             return;
         }
 
-        $gitignoreContent = file_get_contents($gitignorePath);
-
-        if ($gitignoreContent === false) {
+        if (($gitignoreContent = file_get_contents($gitignorePath)) === false) {
             return;
         }
 

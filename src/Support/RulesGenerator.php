@@ -24,13 +24,7 @@ final readonly class RulesGenerator
 
         $defaultsDir = dirname(__DIR__, 2).'/defaults';
 
-        $files = glob($defaultsDir.'/*.mdr');
-
-        if ($files === false) {
-            return;
-        }
-
-        foreach ($files as $file) {
+        foreach (glob($defaultsDir.'/*.mdc') ?: [] as $file) {
             copy($file, $base.'/'.basename($file));
         }
     }
