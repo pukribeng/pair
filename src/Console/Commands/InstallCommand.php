@@ -30,6 +30,10 @@ final class InstallCommand extends Command
 
         $path = $input->getOption('path') ?: Project::fromEnv()->path();
 
+        if (! is_string($path)) {
+            return Command::FAILURE;
+        }
+
         $this->ensureAiFolderExists($input, $path);
         $this->ensureAgentsFoldersAreIgnored($path);
 
@@ -54,7 +58,8 @@ final class InstallCommand extends Command
         $aiFolder = $path.'/.ai';
 
         if (file_exists($aiFolder) && ! $input->getOption('force')) {
-            render(<<<'HTML'
+            render(
+                <<<'HTML'
                 <div>
                     <span>
                     The [.ai] folder already exists. You may use the [--force] option to overwrite it.
@@ -69,9 +74,11 @@ final class InstallCommand extends Command
         if (file_exists($aiFolder)) {
             $files = glob($aiFolder.'/*');
 
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
+            if ($files !== false) {
+                foreach ($files as $file) {
+                    if (is_file($file)) {
+                        unlink($file);
+                    }
                 }
             }
         } else {
@@ -80,7 +87,13 @@ final class InstallCommand extends Command
 
         $defaultFolder = dirname(__DIR__, 3).'/defaults';
 
-        foreach (glob($defaultFolder.'/*') as $file) {
+        $files = glob($defaultFolder.'/*');
+
+        if ($files === false) {
+            return;
+        }
+
+        foreach ($files as $file) {
             if (is_file($file)) {
                 copy($file, $aiFolder.'/'.basename($file));
             }
@@ -99,6 +112,10 @@ final class InstallCommand extends Command
         }
 
         $gitignoreContent = file_get_contents($gitignorePath);
+
+        if ($gitignoreContent === false) {
+            return;
+        }
 
         foreach ((new AgentManager)->all() as $agent) {
             $baseFolder = $agent->baseFolder();
