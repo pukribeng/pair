@@ -28,11 +28,8 @@ final class SyncCommand extends Command
     {
         renderUsing($output);
 
+        /** @var string $path */
         $path = $input->getOption('path') ?: Project::fromEnv()->path();
-
-        if (! is_string($path)) {
-            return Command::FAILURE;
-        }
 
         $this->ensureAgentsRulesAreSynced($path);
 
