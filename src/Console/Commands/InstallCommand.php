@@ -101,7 +101,7 @@ final class InstallCommand extends Command
         $gitignoreContent = file_get_contents($gitignorePath);
 
         foreach ((new AgentManager)->all() as $agent) {
-            $baseFolder = $agent->baseFolderOrFile();
+            $baseFolder = $agent->baseFolder();
 
             if (str_contains($gitignoreContent, $baseFolder)) {
                 continue;
