@@ -2,7 +2,7 @@
 
 use Symfony\Component\Process\Process;
 
-it('creates the `.ai` folder', function () {
+it('creates the `.ai` folder', function (): void {
     $process = Process::fromShellCommandline(
         'php ./bin/pair install --path tests/Playground',
     );

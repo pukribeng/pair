@@ -23,7 +23,7 @@ final readonly class Project
      */
     public static function fromEnv(): self
     {
-        return new self(getcwd());
+        return new self((string) getcwd());
     }
 
     /**

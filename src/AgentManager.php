@@ -18,7 +18,7 @@ final readonly class AgentManager
     /**
      * Creates a new instance of the agent manager.
      *
-     * @param  array<string, class-string<Agent>>  $agents
+     * @param  array<int,class-string<Agent>>  $agents
      */
     public function __construct(
         private array $agents = [
@@ -34,7 +34,7 @@ final readonly class AgentManager
     /**
      * Returns all the agents.
      *
-     * @return array<string, Agent>
+     * @return array<int,Agent>
      */
     public function all(): array
     {
