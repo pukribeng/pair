@@ -31,10 +31,6 @@ final class InstallCommand extends Command
         /** @var string $path */
         $path = $input->getOption('path') ?: Project::fromEnv()->path();
 
-        if (! is_string($path)) {
-            return Command::FAILURE;
-        }
-
         $this->ensureAiFolderExists($input, $path);
         $this->ensureAgentsFoldersAreIgnored($path);
 
@@ -73,13 +69,9 @@ final class InstallCommand extends Command
         }
 
         if (file_exists($aiFolder)) {
-            $files = glob($aiFolder.'/*') ?: [];
-
-            if ($files !== false) {
-                foreach ($files as $file) {
-                    if (is_file($file)) {
-                        unlink($file);
-                    }
+            foreach (glob($aiFolder.'/*') ?: [] as $file) {
+                if (is_file($file)) {
+                    unlink($file);
                 }
             }
         } else {
