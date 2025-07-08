@@ -12,9 +12,9 @@ use Pair\Contracts\Agent;
 final class Cursor implements Agent
 {
     /**
-     * Returns the base folder or file for the agent.
+     * Returns the base folder for the agent.
      */
-    public function baseFolderOrFile(): string
+    public function baseFolder(): string
     {
         return '.cursor/rules';
     }

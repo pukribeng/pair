@@ -17,7 +17,7 @@ final readonly class RulesGenerator
     public static function generate(Agent $agent, string $path): void
     {
         Filesystem::remove(
-            $base = ($path.'/'.$agent->baseFolderOrFile()),
+            $base = ($path.'/'.$agent->baseFolder()),
         );
 
         mkdir($base, 0755, true);
