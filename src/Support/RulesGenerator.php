@@ -24,8 +24,6 @@ final readonly class RulesGenerator
 
         $defaultsDir = dirname(__DIR__, 2).'/defaults';
 
-        foreach (glob($defaultsDir.'/*.mdc') ?: [] as $file) {
-            copy($file, $base.'/'.basename($file));
-        }
+        Filesystem::copyDirectoryFiles($defaultsDir, $base);
     }
 }

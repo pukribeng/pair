@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pair\Console\Commands;
 
 use Pair\AgentManager;
+use Pair\Support\Filesystem;
 use Pair\Support\Project;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -69,22 +70,14 @@ final class InstallCommand extends Command
         }
 
         if (file_exists($aiFolder)) {
-            foreach (glob($aiFolder.'/*') ?: [] as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
+            Filesystem::truncateDirectory($aiFolder);
         } else {
-            mkdir($aiFolder, 0755, true);
+            Filesystem::createDirectory($aiFolder);
         }
 
         $defaultFolder = dirname(__DIR__, 3).'/defaults';
 
-        foreach (glob($defaultFolder.'/*') ?: [] as $file) {
-            if (is_file($file)) {
-                copy($file, $aiFolder.'/'.basename($file));
-            }
-        }
+        Filesystem::copyDirectoryFiles($defaultFolder, $aiFolder);
     }
 
     /**

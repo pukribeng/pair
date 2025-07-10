@@ -36,4 +36,33 @@ final readonly class Filesystem
 
         rmdir($path);
     }
+
+    /**
+     * Creates directory.
+     */
+    public static function createDirectory(string $path): void
+    {
+        mkdir($path, 0755, true);
+    }
+
+    /**
+     * Deletes all directory files.
+     */
+    public static function truncateDirectory(string $path): void
+    {
+        foreach (glob($path.'/*') ?: [] as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+    }
+
+    public static function copyDirectoryFiles(string $from, string $to): void
+    {
+        foreach (glob($from.'/*') ?: [] as $file) {
+            if (is_file($file)) {
+                copy($file, $to.'/'.basename($file));
+            }
+        }
+    }
 }
